@@ -3,11 +3,13 @@ var ejs = require('ejs');
 var express = require('express');
 var app = express();
 
+app.set('view engine', 'ejs');
+
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
-  response.send(ejs.render('hello world'));
+  response.render('index', { title: 'The index page!' })
 });
 
 app.listen(app.get('port'), function() {
