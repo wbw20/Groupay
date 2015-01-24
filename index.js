@@ -1,9 +1,41 @@
 var ejs = require('ejs');
 
 var express = require('express');
-// var Firebase = require("firebase");
+var elasticsearch = require('elasticsearch');
 var app = express();
-// var firebase = new Firebase("https://groupay.firebaseio.com/");
+
+var client = elasticsearch.Client({
+  host: 'http://a6a6e4a90ec4dd4b000.qbox.io',
+  sniffOnStart: true,
+  sniffInterval: 300000
+});
+
+function createUser(doc, cb) {
+  client.index({
+    index: 'groupay',
+    type: 'user',
+    body: doc
+  }, cb);
+}
+
+function createRoom(doc, cb) {
+  client.index({
+    index: 'groupay',
+    type: 'room',
+    body: doc
+  }, cb);
+}
+
+function getAll(cb) {
+  client.search({
+    index: 'groupay',
+    body: {
+      'filter': {
+        'match_all': { }
+      }
+    }
+  }).then(cb);
+}
 
 app.set('view engine', 'ejs');
 
@@ -15,7 +47,15 @@ app.get('/', function(request, response) {
 });
 
 app.get('/room', function(request, response) {
-  response.render('room', { title: 'The room page!' })
+  response.render('room', { title: 'The room page!' });
+});
+
+app.post('/room', function(request, response) {
+  createRoom({
+    name: 'Will'
+  }, function(res) {
+    response.send(res);
+  });
 });
 
 app.listen(app.get('port'), function() {

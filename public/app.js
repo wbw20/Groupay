@@ -1,6 +1,7 @@
 $(document).ready(function() {
   var firebase = new Firebase("https://groupay.firebaseio.com/");
 
+  debugger
 
   firebase.set({
     title: "Hello World!",
