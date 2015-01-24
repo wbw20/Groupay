@@ -1,3 +1,5 @@
+var ejs = require('ejs');
+
 var express = require('express');
 var app = express();
 
@@ -5,7 +7,7 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
-  response.send('Hello World! Will Rules');
+  response.send(ejs.render('hello world'));
 });
 
 app.listen(app.get('port'), function() {
