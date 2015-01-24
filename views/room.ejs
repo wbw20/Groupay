@@ -15,8 +15,29 @@
     <![endif]-->
 
     <script type="text/javascript">
-      $(document).ready(function() {
-        $.ajax({
+        $(document).ready(function() {
+
+          var parts = window.location.href.split("/");
+          var id = parts[parts.length - 1];
+          
+          $("input#add").click(function() {
+            var name = $("input#name").val();
+            var price = $("input#price").val();
+
+            $.ajax({
+              url: "/add",
+              dataType: "json",
+              data: {"id": id, "item": {"name": name, "price": price}}
+            });
+
+            var item = $(".item").first().clone();
+            item.find("span.name").html(name);
+            item.find("span.price").html(price);
+            $("div#old_items").append(item);
+            item.show();
+          });
+
+        /*$.ajax({
           url: "/room",
           dataType: "json",
           data: {"id": "id"}
@@ -25,7 +46,19 @@
           for(var i = 0; i < json.item.length; i++) {
             alert(json.item[i].name);
           }
-        });
+        });*/
+        json = {"id": "112323", "name": "My Name", "items" : [{"name": "Hotel", "price": "$300"},{"name": "Flight", "price": "$1500"}]};
+
+        $("div.header span.name").html(json.name);
+        $("div.header span.name").html(json.name);
+
+        for(var i = 0; i < json.items.length; i++) {
+          var item = $(".item").first().clone();
+          item.find("span.name").html(json.items[i].name);
+          item.find("span.price").html(json.items[i].price);
+          $("div#old_items").append(item);
+          item.show();
+        }
       });
     </script>
 
@@ -33,13 +66,23 @@
   </head>
   <body>
     <div id="room">
+      <span style="display:none" id="id"></span>
       <div class="header">
-        <span class="name">Room Name</div>
+        <span class="name"></div>
       </div>
-      <div class="item">
-        <span class="name">Hotel</span>
-        <span class="price">$300</span>
-        <input type="button" value="Pay"/> 
+      <div class="new_item">
+        <span>Name: </span>
+        <input type="text" name="name" id="name"/>
+        <span>Price: </span>
+        <input type="text" name="price" id="price"/>
+        <input type="button" value="Add" id="add"/>
+      </div>
+      <div id="old_items">
+        <div class="item" style="display:none">
+          <span class="name"></span>
+          <span class="price"></span>
+          <input type="button" value="Pay"/> 
+        </div>
       </div>
     </div>
   </body>
