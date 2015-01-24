@@ -7,8 +7,7 @@
     <meta name="author" content="">
 
     <link rel="stylesheet" href="index.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/elasticsearch/3.1.1/elasticsearch.min.js"></script>
+    
     <script src="https://cdn.firebase.com/js/client/2.1.1/firebase.js"></script>
     <script type="text/javascript" src="app.js"></script>
 
@@ -32,24 +31,38 @@
       }
     </script>
 
-  </head>
-  <body>
-    <div id="create">
-      <h1>GroupPay</h1>
-      <div> 
-        <span class="form_title">Room:</span>
-        <input type="text" name="room"/> 
+</head>
+
+<body class="ui-mobile-viewport ui-overlay-a">
+  <div data-role="page" id="testpage" data-url="testpage" tabindex="0" class=
+  "ui-page ui-page-theme-a ui-page-footer-fixed ui-page-active" style=
+  "padding-bottom: 35px; min-height: 527px;">
+    <div class="ui-panel-wrapper">
+      <div data-role="header" role="banner" class="ui-header ui-bar-inherit">
+        <h1 class="ui-title" role="heading" aria-level="1">Groupay</h1>
       </div>
-      <div>Login via PayPall</div>
-      <div> 
-        <span class="form_title">E-Mail:</span>
-        <input type="text" name="email"/> 
+
+      <div class="ui-content" role="main">
+          <div class="ui-field-contain">
+            <label for="name2">Room name:</label>
+                <input type="text" name="room" id="name2" value="" data-clear-btn="true" />
+          </div>
+
+          <div class="ui-field-contain">
+            <label for="name2">Paypal Username:</label>
+                <input type="text" name="username" id="name2" value="" data-clear-btn="true" />
+          </div>
+
+          <div class="ui-field-contain">
+            <label for="name2">Password</label>
+                <input type="text" name="password" id="name2" value="" data-clear-btn="true" />
+          </div>
+        <div id="create" class="ui-btn ui-corner-all ui-shadow ui-btn-active">Submit</a>
       </div>
-      <div> 
-        <span class="form_title">Password:</span>
-        <input type="password" name="password"/> 
-      </div>
-      <input name="create" id="create" type="button" value="Create"/>
-    </div>
-  </body>
+
+
+    </div><!-- /header -->
+    <!-- /content -->
+  </div><!-- /page -->
+</body>
 </html>
