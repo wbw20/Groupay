@@ -1,3 +1,6 @@
 body {
   background-color: cyan;
 }
+div#create {
+	text-align: center;
+}
