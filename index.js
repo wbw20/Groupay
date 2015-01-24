@@ -1,7 +1,9 @@
 var ejs = require('ejs');
 
 var express = require('express');
+// var Firebase = require("firebase");
 var app = express();
+// var firebase = new Firebase("https://groupay.firebaseio.com/");
 
 app.set('view engine', 'ejs');
 
@@ -9,7 +11,7 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
-  response.render('index', { title: 'The index page!' })
+  response.render('index');
 });
 
 app.listen(app.get('port'), function() {
