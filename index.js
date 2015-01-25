@@ -1,57 +1,36 @@
 var ejs = require('ejs');
 
 var express = require('express');
+var randomstring = require("randomstring");
 var bodyParser = require('body-parser');
-var elasticsearch = require('elasticsearch');
 var app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var client = elasticsearch.Client({
-  host: 'http://a6a6e4a90ec4dd4b000.qbox.io',
-  sniffOnStart: true,
-  sniffInterval: 300000
-});
- 
-function createUser(doc, cb) {
-  client.index({
-    index: 'groupay',
-    type: 'user',
-    body: doc
-  }, cb);
+var rooms = [];
+
+function generateId() {
+  return randomstring.generate(7);
 }
 
-function createRoom(doc, cb) {
-  client.index({
-    index: 'groupay',
-    type: 'room',
-    body: doc
-  }, cb);
+function createRoom(name, cb) {
+  var room = {
+    id: generateId(),
+    name: name,
+    items: []
+  };
+
+  rooms.push(room);
+  cb(room);
 }
 
 function getRoom(id, cb) {
-  client.search({
-    index: 'groupay',
-    body: {
-      'filter': {
-        'term': {
-          '_id': id
-        }
-      }
+  rooms.forEach(function(room) {
+    if (room.id === id) {
+      cb(room);
     }
-  }).then(cb);
-}
-
-function getAll(cb) {
-  client.search({
-    index: 'groupay',
-    body: {
-      'filter': {
-        'match_all': { }
-      }
-    }
-  }).then(cb);
+  });
 }
 
 app.set('view engine', 'ejs');
@@ -70,9 +49,7 @@ app.get('/room/:id', function(request, response) {
 });
 
 app.post('/room', function(request, response) {
-  createRoom({
-    name: request.body.name
-  }, function(res) {
+  createRoom(request.body.name, function(res) {
     response.send(res);
   });
 });
