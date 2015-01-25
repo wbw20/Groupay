@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="http://demos.jquerymobile.com/1.4.5/css/themes/default/jquery.mobile-1.4.5.min.css" type="text/css" />
   <script src="http://demos.jquerymobile.com/1.4.5/js/jquery.js" type="text/javascript"></script>
   <script src="http://demos.jquerymobile.com/1.4.5/js/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+
+  <script type="text/javascript" src="app.js"></script>
+
   <style type="text/css">
 /*<![CDATA[*/
         .noshadow * {
@@ -21,22 +24,6 @@
         }
   /*]]>*/
   </style>
-
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("#create").click(create);
-      });
-      function create() {
-        $.ajax({
-          url: "/room",
-          dataType: "json",
-          data: {test: "something"}
-        }).done(function(json) {
-          window.location.href = "/room/";
-        });
-      }
-    </script>
-
 </head>
 
 <body class="ui-mobile-viewport ui-overlay-a">
@@ -51,18 +38,9 @@
       <div class="ui-content" role="main">
           <div class="ui-field-contain">
             <label for="name2">Room name:</label>
-                <input type="text" name="room" id="name2" value="" data-clear-btn="true" />
+                <input type="text" name="room" id="name" value="" data-clear-btn="true" />
           </div>
 
-          <div class="ui-field-contain">
-            <label for="name2">Paypal Username:</label>
-                <input type="text" name="username" id="name2" value="" data-clear-btn="true" />
-          </div>
-
-          <div class="ui-field-contain">
-            <label for="name2">Password</label>
-                <input type="text" name="password" id="name2" value="" data-clear-btn="true" />
-          </div>
         <div id="create" class="ui-btn ui-corner-all ui-shadow ui-btn-active">Submit</a>
       </div>
 
