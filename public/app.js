@@ -6,7 +6,7 @@ $(document).ready(function() {
     $.post('room', {
       name: name
     }).done(function(response) {
-      window.location.href = 'rooms/' + response.id;
+      window.location.href = 'room/' + response.id;
     });
   });
 });

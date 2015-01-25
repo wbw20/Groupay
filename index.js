@@ -25,6 +25,13 @@ function createRoom(name, cb) {
   cb(room);
 }
 
+function createItem(roomId, item, cb) {
+  var room = getRoom(roomId);
+
+  room.items.push(item);
+  cb(room);
+}
+
 function getRoom(id, cb) {
   rooms.forEach(function(room) {
     if (room.id === id) {
@@ -50,6 +57,12 @@ app.get('/room/:id', function(request, response) {
 
 app.post('/room', function(request, response) {
   createRoom(request.body.name, function(res) {
+    response.send(res);
+  });
+});
+
+app.post('/room/:id/item', function(request, response) {
+  createItem(request.params.id, request.body, function(res) {
     response.send(res);
   });
 });
