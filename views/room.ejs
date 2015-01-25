@@ -10,6 +10,15 @@
   <script src="http://demos.jquerymobile.com/1.4.5/js/jquery.js" type="text/javascript"></script>
   <script src="http://demos.jquerymobile.com/1.4.5/js/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
   <style type="text/css">
+
+<script src="/card.js"></script>
+
+<script type="text/javascript">
+  $(document).live('mobileinit', function() {
+    $.mobile.ajaxLinksEnabled = false;
+    });
+</script>
+
 /*<![CDATA[*/
         .noshadow * {
             -webkit-box-shadow: none !important;
@@ -65,9 +74,10 @@
 
           <div id="create" class="ui-btn ui-corner-all ui-shadow ui-btn-active">Submit</div>
 
+
             <ul data-role="listview" data-inset="true" data-divider-theme="a" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
                     <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-a ui-first-child">Current Items</li>
-                    <li data-icon="gear" class="ui-last-child"><a href="" class="ui-btn ui-btn-icon-right ui-icon-gear">Flight - $300 - Pay Now</a></li>
+                    <li data-icon="gear" class="ui-last-child"><a href="http://localhost:5000/item/kjndskjnfd" rel="external" class="ui-btn ui-btn-icon-right ui-icon-gear">Flight - $300 - Pay Now</a></li>
             </ul>
 
 
