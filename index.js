@@ -65,8 +65,9 @@ app.get('/', function(request, response) {
 });
 
 app.get('/room/:id', function(request, response) {
-  getRoom(request.params.id, function(results) {
-    response.render('room');
+  getRoom(request.params.id, function(result) {
+    console.log(result);
+    response.render('room', result);
   });
 });
 
