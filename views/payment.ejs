@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html class="ui-mobile" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" />
+
+  <title>Groupay</title>
+  <link rel="stylesheet" href="http://demos.jquerymobile.com/1.4.5/css/themes/default/jquery.mobile-1.4.5.min.css" type="text/css" />
+  <script src="http://demos.jquerymobile.com/1.4.5/js/jquery.js" type="text/javascript"></script>
+  <script src="http://demos.jquerymobile.com/1.4.5/js/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+  <style type="text/css">
+/*<![CDATA[*/
+        .noshadow * {
+            -webkit-box-shadow: none !important;
+            -moz-box-shadow: none !important;
+            box-shadow: none !important;
+        }
+        form.ui-mini .ui-field-contain fieldset.ui-controlgroup legend small {
+            color: #666;
+        }
+  /*]]>*/
+  </style>
+
+  <script src="/card.js"></script>
+
+  <style>
+    .demo-container {
+        width: 100%;
+        max-width: 350px;
+        margin: 50px auto;
+    }
+    form {
+        margin: 30px;
+    }
+    input {
+        width: 200px;
+        margin: 10px auto;
+        display: block;
+    }
+  </style>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          new Card({
+              form: document.querySelector('form'),
+              container: '.card-wrapper'
+          });
+
+        $("input#submit").click(function create() {
+          $.ajax({
+            url: "/room",
+            dataType: "json",
+            data: {test: "something"}
+          }).done(function(json) {
+            window.location.href = "/room/";
+          });
+        });
+      });
+      
+    </script>
+
+</head>
+
+<body class="ui-mobile-viewport ui-overlay-a">
+  <div data-role="page" id="testpage" data-url="testpage" tabindex="0" class=
+  "ui-page ui-page-theme-a ui-page-footer-fixed ui-page-active" style=
+  "padding-bottom: 35px; min-height: 527px;">
+    <div class="ui-panel-wrapper">
+      <div data-role="header" role="banner" class="ui-header ui-bar-inherit">
+        <h1 class="ui-title" role="heading" aria-level="1">Groupay</h1>
+      </div>
+
+      <div class="ui-content" role="main">
+        
+        <div class="demo-container">
+            <div class="card-wrapper"></div>
+
+            <div class="form-container active">
+                <form action="">
+                    <input placeholder="Card number" type="text" name="number">
+                    <input placeholder="Full name" type="text" name="name">
+                    <input placeholder="MM/YY" type="text" name="expiry">
+                    <input placeholder="CVC" type="text" name="cvc">
+                    <input type="submit" value="Submit" id="submit">
+                </form>
+            </div>
+        </div>
+      </div>
+
+
+    </div><!-- /header -->
+    <!-- /content -->
+  </div><!-- /page -->
+</body>
+</html>
