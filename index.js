@@ -32,12 +32,27 @@ function createItem(roomId, item, cb) {
   cb(room);
 }
 
+function makePayment(id, status, cb) {
+  rooms.forEach(function(room) {
+    room.items.forEach(function(item) {
+      if (item.id === id) {
+        item.status = status;
+        cb(room);
+      }
+    });
+  });
+
+  cb();
+}
+
 function getRoom(id, cb) {
   rooms.forEach(function(room) {
     if (room.id === id) {
       cb(room);
     }
   });
+
+  cb();
 }
 
 app.set('view engine', 'ejs');
@@ -51,7 +66,7 @@ app.get('/', function(request, response) {
 
 app.get('/room/:id', function(request, response) {
   getRoom(request.params.id, function(results) {
-    response.send(results);
+    response.render('room');
   });
 });
 
@@ -63,6 +78,12 @@ app.post('/room', function(request, response) {
 
 app.post('/room/:id/item', function(request, response) {
   createItem(request.params.id, request.body, function(res) {
+    response.send(res);
+  });
+});
+
+app.post('/item/:id', function(request, response) {
+  makePayment(request.params.id, request.body.status, function(res) {
     response.send(res);
   });
 });
