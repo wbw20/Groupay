@@ -44,35 +44,16 @@
 
       <div class="ui-content" role="main">
 
-          <div class="ui-field-contain">
-            <h1><%= name %></h1>
-          </div>
+            <ul data-role="listview" data-inset="true" data-divider-theme="a" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+                    <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-a ui-first-child">Current Items</li>
+            
+                    <li data-icon="gear" class="ui-last-child"><a href="/item/kjndskjnfd" rel="external" class="ui-btn ui-btn-icon-right ui-icon-gear">Flight - $500 - Pay Now</a></li>
+                    <li data-icon="gear" class="ui-last-child"><a href="/item/kjndskjnfd" rel="external" class="ui-btn ui-btn-icon-right ui-icon-gear">Hotel - $1100 - Pay Now</a></li>
+                    <li data-icon="gear" class="ui-last-child"><a href="/item/kjndskjnfd" rel="external" class="ui-btn ui-btn-icon-right ui-icon-gear">Tickets - $40 - Pay Now</a></li>
+            
+            
+            </ul>
 
-          <div class="ui-field-contain">
-            <label for="name2">Description:</label>
-                <input type="text" name="room" id="name2" value="" data-clear-btn="true" />
-          </div>
-
-          <div class="ui-field-contain">
-            <label for="name2">Price:</label>
-                <input type="text" name="username" id="name2" value="" data-clear-btn="true" />
-          </div>
-         <fieldset data-role="controlgroup" class="ui-controlgroup ui-controlgroup-vertical ui-corner-all">
-            <div role="heading" class="ui-controlgroup-label"><legend>Choose a payment type:</legend></div>
-            <div class="ui-controlgroup-controls ">
-                <div class="ui-radio">
-                    <label for="radio-choice-1" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off">Pay Now</label>
-                    <input type="radio" name="radio-choice-1" id="radio-choice-1" value="paynow">
-                </div>
-
-                <div class="ui-radio">
-                    <label for="radio-choice-2" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off ui-last-child">Hold Money</label>
-                    <input type="radio" name="radio-choice-2" id="radio-choice-2" value="hold">
-                </div>
-            </div>
-          </fieldset>
-
-          <div id="create" class="ui-btn ui-corner-all ui-shadow ui-btn-active">Submit</div>
 
       </div>
 
