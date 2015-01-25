@@ -89,6 +89,12 @@ app.get('/item/:id', function(request, response) {
   // });
 });
 
+app.get('/guest/:id', function(request, response) {
+  // getItem(request.params.id, function(results) {
+    response.render('guest');
+  // });
+});
+
 app.post('/item/:id', function(request, response) {
   makePayment(request.params.id, request.body.status, function(res) {
     response.send(res);
