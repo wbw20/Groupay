@@ -1,14 +1,12 @@
 $(document).ready(function() {
-  var firebase = new Firebase("https://groupay.firebaseio.com/");
 
+  $('#create').click(function(event) {
+    var name = $('#name').val();
 
-  firebase.set({
-    title: "Hello World!",
-    author: "Firebase",
-    location: {
-      city: "San Francisco",
-      state: "California",
-      zip: 94103
-    }
+    $.post('room', {
+      name: name
+    }).done(function(response) {
+      window.location.href = 'rooms/' + response.id;
+    });
   });
 });

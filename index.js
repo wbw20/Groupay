@@ -1,9 +1,37 @@
 var ejs = require('ejs');
 
 var express = require('express');
-// var Firebase = require("firebase");
+var randomstring = require("randomstring");
+var bodyParser = require('body-parser');
 var app = express();
-// var firebase = new Firebase("https://groupay.firebaseio.com/");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+var rooms = [];
+
+function generateId() {
+  return randomstring.generate(7);
+}
+
+function createRoom(name, cb) {
+  var room = {
+    id: generateId(),
+    name: name,
+    items: []
+  };
+
+  rooms.push(room);
+  cb(room);
+}
+
+function getRoom(id, cb) {
+  rooms.forEach(function(room) {
+    if (room.id === id) {
+      cb(room);
+    }
+  });
+}
 
 app.set('view engine', 'ejs');
 
@@ -14,8 +42,16 @@ app.get('/', function(request, response) {
   response.render('index');
 });
 
-app.get('/room', function(request, response) {
-  response.render('room', { title: 'The room page!' })
+app.get('/room/:id', function(request, response) {
+  getRoom(request.params.id, function(results) {
+    response.send(results);
+  });
+});
+
+app.post('/room', function(request, response) {
+  createRoom(request.body.name, function(res) {
+    response.send(res);
+  });
 });
 
 app.listen(app.get('port'), function() {
