@@ -82,6 +82,12 @@ app.post('/room/:id/item', function(request, response) {
   });
 });
 
+app.get('/item/:id', function(request, response) {
+  getItem(request.params.id, function(results) {
+    response.render('item');
+  });
+});
+
 app.post('/item/:id', function(request, response) {
   makePayment(request.params.id, request.body.status, function(res) {
     response.send(res);
